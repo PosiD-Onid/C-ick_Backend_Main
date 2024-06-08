@@ -1,12 +1,13 @@
-const config = {
-  development: {
-    username: process.env.DB_USERNAME,
-    password: "coffee1592",
-    database: "click",
-    host: "127.0.0.1",
-    port: "3306",
-    dialect: "mysql"
-  }
+require('dotenv').config();
+const env = process.env;
+
+const development = {
+  username: env.MYSQL_USERNAME,
+  password: env.MYSQL_PASSWORD,
+  database: env.MYSQL_DATABASE,
+  host: env.MYSQL_HOST,
+  dialect: "mysql",
+  //port: env.MYSQL_PORT
 };
 
-module.exports = config;
+module.exports = {development};

@@ -1,15 +1,15 @@
 const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
-const sequelize = require('sequelize');
 const dotenv = require('dotenv');
-const db = require('./models')
+const db = require('./models');
+
+const router = require('./router');
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-
 
 // Middleware setup
 app.use(morgan('dev'));
@@ -18,13 +18,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 db.sequelize
-    .sync({ force: true })
+    .sync({ force: false }) 
     .then(() => {
-        console.log('db 연결 성공')
+        console.log('db 연결 성공');
     })
-    .catch(console.error)
+    .catch(console.error);
 
 // 라우터
+app.use('/', router);
 
 // 에러핸들링
 app.use((req, res, next) => {

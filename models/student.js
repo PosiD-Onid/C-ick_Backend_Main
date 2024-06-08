@@ -62,10 +62,9 @@
 //
 // }
 
-const DataTypes = require('sequelize');
-const { Model } = DataTypes;
+const { DataTypes, Model } = require('sequelize');
 
-module.exports = class Student extends Model {
+class Student extends Model {
     static init(sequelize) {
         return super.init(
             {
@@ -74,39 +73,40 @@ module.exports = class Student extends Model {
                     allowNull: false,
                     unique: true,
                     primaryKey: true,
-                    comment: "사용자 ID"
+                    comment: '사용자 ID',
                 },
                 password: {
                     type: DataTypes.STRING(20),
                     allowNull: false,
-                    comment: "비밀번호"
+                    comment: '비밀번호',
                 },
                 name: {
                     type: DataTypes.STRING(5),
                     allowNull: false,
-                    comment: "이름"
+                    comment: '이름',
                 },
                 grade: {
                     type: DataTypes.INTEGER,
                     allowNull: false,
-                    comment: "학년"
+                    comment: '학년',
                 },
                 classNum: {
                     type: DataTypes.INTEGER,
                     allowNull: false,
-                    comment: "반"
+                    comment: '반',
                 },
                 number: {
                     type: DataTypes.INTEGER,
                     allowNull: false,
-                    comment: "번호"
+                    comment: '번호',
                 },
                 phoneNumber: {
                     type: DataTypes.STRING(11),
                     allowNull: false,
-                    comment: "전화번호"
-                }
-            }, {
+                    comment: '전화번호',
+                },
+            },
+            {
                 modelName: 'Student',
                 tableName: 'Student',
                 sequelize,
@@ -119,7 +119,9 @@ module.exports = class Student extends Model {
             through: 'StudentLesson',
             as: 'classes',
             foreignKey: 'id',
-            otherKey: 'lessonId'
+            otherKey: 'lessonId',
         });
     }
-};
+}
+
+module.exports = Student;
