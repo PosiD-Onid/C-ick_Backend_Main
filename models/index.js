@@ -1,6 +1,8 @@
 const Sequelize = require('sequelize')
 const student = require('./student')
 const lesson = require('./lesson')
+const subject = require('./subject')
+const assessment = require('./assessment')
 const teacher = require('./teacher')
 const {lessthan} = require("nunjucks/src/tests");
 const {resetWatchers} = require("nodemon/lib/monitor/watch");
@@ -21,6 +23,8 @@ db.sequelize = sequelize;
 db.Student = student
 db.Lesson = lesson
 db.Teacher= teacher
+db.Subject= subject
+db.Assessment= assessment
 
 Object.keys(db).forEach(modelName => {
   db[modelName].init(sequelize)

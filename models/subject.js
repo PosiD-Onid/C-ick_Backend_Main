@@ -36,5 +36,17 @@ module.exports = class Subject extends Model {
             foreignKey: 'subjectId',
             otherKey: 'LessonId'
         });
+        db.Subject.belongsToMany(db.Teacher, {
+            through: 'TeacherSubject',
+            as: 'subjects',
+            foreignKey: 'subjectId',
+            otherKey: 'id'
+        });
+        db.Subject.belongsToMany(db.Assessment, {
+            through: 'SubjectAssessment',
+            as: 'assessments',
+            foreignKey: 'subjectId',
+            otherKey: 'assessmentId'
+        });
     }
 };
