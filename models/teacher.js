@@ -5,7 +5,7 @@ module.exports = class Teacher extends Model {
     static init(sequelize) {
         return super.init(
             {
-                id: {
+                userid: {
                     type: DataTypes.STRING(15),
                     allowNull: false,
                     unique: true,
@@ -40,7 +40,7 @@ module.exports = class Teacher extends Model {
         db.Teacher.belongsToMany(db.Subject, {
             through: 'TeacherSubject',
             as: 'subjects',
-            foreignKey: 'teacherId',
+            foreignKey: 'userId',
             otherKey: 'subjectId',
         });
     }

@@ -40,7 +40,7 @@ module.exports = class Subject extends Model {
             through: 'TeacherSubject',
             as: 'subjects',
             foreignKey: 'subjectId',
-            otherKey: 'id'
+            otherKey: 'userid'
         });
         db.Subject.belongsToMany(db.Assessment, {
             through: 'SubjectAssessment',
